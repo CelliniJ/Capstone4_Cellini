@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Task List";
+}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+@model List<ToDo>
+
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>DueDate</th>
+                <th>Complete</th>
+                <th>Edit</th>
+                <th></th>
+            </tr>
+
+            @foreach (ToDo t in Model)
+            {
+                <tr>
+                    <td>@t.Description</td>
+                    <td>@t.DueDate</td>
+                    @if (t.Complete == true)
+                    {
+                        <td>Completed!</td>
+                    }
+                    else
+                    {
+                        <td>Incomplete</td>
+                    }
+
+                    <td class="btn">
+                        <a href="../Home/ChangeComplete?id=@t.Id">Mark</a>
+                    </td>
+
+                    <td class="btn">
+                        <form action="../Home/DeleteToDo" method="post">
+                            <input type="text" name="Id" value="@t.Id" hidden />
+                            <input type="submit" value="Delete Task" />
+                        </form>
+                    </td>
+
+                    <td class="btn">
+                        <a href="../Home/EditToDo?id=@t.Id">Edit this Task</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+
+
+        <a href="../Home/AddToDo" class="btn">Add a new Task</a>
+<td>
+<form action="../Home/SearchCompletion" method="post">
+<input type="checkbox" name="status" value="status" /> 
+<input type="submit" value="Search by Completion" />
+</form>
+</td> <br />
+
+<td>
+    <form action="../Home/SearchDate" method="post">
+        <input type="date" name="status" value="status" />
+        <input type="submit" value="Search By Date" />
+    </form>
+</td>

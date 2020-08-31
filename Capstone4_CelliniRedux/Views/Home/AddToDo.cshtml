@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "AddToDo";
+}
+
+@model ToDo
+
+<form action="../Home/AddToDo" method="post">
+    <input type="text" name="Description" />
+    <input type="date" name="DueDate" />
+
+    @Html.LabelFor(m => m.Complete)
+    <input type="checkbox" name="Complete" value="true" checked />
+    <input type="checkbox" name="Complete" value="false" hidden />
+
+    <input type="submit" value="Add New Task" />
+</form>

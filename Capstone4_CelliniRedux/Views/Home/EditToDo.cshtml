@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Edit ToDo";
+}
+
+@model ToDo
+<form action="../Home/Save" method="post">
+    <input type="text" name="Id" value="@Model.Id" hidden />
+    <input type="text" name="Description" value="@Model.Description" placeholder="@Model.Description" />
+    <input type="date" name="DueDate" value="@Model.DueDate" placeholder="@Model.DueDate" />
+
+    @Html.LabelFor(m => m.Complete)
+    @if (Model.Complete == true)
+    {
+        <input type="checkbox" name="Complete" value="true" checked />
+        <input type="checkbox" name="Complete" value="false" hidden />
+    }
+    else
+    {
+        <input type="checkbox" name="Complete" value="true" />
+        <input type="checkbox" name="Complete" value="false" hidden />
+    }
+
+    <input type="submit" value="Save Edit" />
+</form>
